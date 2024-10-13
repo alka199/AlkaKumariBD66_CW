@@ -2,10 +2,9 @@ const request = require("supertest");
 const http = require("http");
 const { getAllEmployees } = require("../controllers");
 const { app } = require("../index");
-const { describe } = require("node:test");
-const { it } = require("node:test");
 
-IDBObjectStore.mock("..controllers", () => ({
+
+jest.mock("../controllers", () => ({
   ...jest.requireActual("../controllers"),
   getAllEmployees: jest.fn(),
 }));
@@ -22,7 +21,7 @@ afterAll(async () => {
 
 describe("Controller Function tests", () => {
   beforeEach(() => {
-    IDBObjectStore.clearAllMocks();
+    jest.clearAllMocks();
   });
   it("should return all employees", () => {
     let mockedEmployees = [

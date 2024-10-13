@@ -15,7 +15,7 @@ app.get("/employees", async (req, res) => {
 
 //Exercise 2: Retrieve Employee by ID
 app.get("/employees/details/:id", async (req, res) => {
-  let employee = getEmployeesById(req.params.id);
+  let employee = getEmployeesById(parseInt(req.params.id));
   res.json({
     employee,
   });
